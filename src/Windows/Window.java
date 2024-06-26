@@ -4,6 +4,8 @@
  */
 package Windows;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Usuario
@@ -56,6 +58,11 @@ public class Window extends javax.swing.JFrame {
         jLabel4.setText("Number");
 
         btnSave.setText("Save");
+        btnSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelLayout = new javax.swing.GroupLayout(panel);
         panel.setLayout(panelLayout);
@@ -138,6 +145,27 @@ public class Window extends javax.swing.JFrame {
     private void optionExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_optionExitActionPerformed
         System.exit(0);
     }//GEN-LAST:event_optionExitActionPerformed
+
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+        FileEditor file = new FileEditor();
+        file.makeFile();
+        
+        String name, email, number;
+        
+        name = txtName.getText();
+        email = txtEmail.getText();
+        number = txtNumber.getText();
+        
+        Person p = new Person(name, email, number);
+        
+        file.writeText(p);
+        
+        txtName.setText("");
+        txtEmail.setText("");
+        txtNumber.setText("");
+        
+        JOptionPane.showMessageDialog(null, "Information saved successfully");
+    }//GEN-LAST:event_btnSaveActionPerformed
 
     /**
      * @param args the command line arguments
